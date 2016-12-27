@@ -10,13 +10,14 @@ var Demo;
         __extends(ConfigController, _super);
         /// Conctructor
         function ConfigController($scope, $location, $window, $modal, configService) {
-            _super.call(this, $scope);
-            this.$scope = $scope;
-            this.$location = $location;
-            this.$window = $window;
-            this.$modal = $modal;
-            this.configService = configService;
-            $scope.vm = this;
+            var _this = _super.call(this, $scope) || this;
+            _this.$scope = $scope;
+            _this.$location = $location;
+            _this.$window = $window;
+            _this.$modal = $modal;
+            _this.configService = configService;
+            $scope.vm = _this;
+            return _this;
         }
         ConfigController.prototype.getWidgetList = function () {
             var _this = this;
@@ -94,15 +95,15 @@ var Demo;
         ConfigController.prototype.Init = function () {
             _super.prototype.BaseInit.call(this);
         };
-        ConfigController.$inject = [
-            '$scope',
-            '$location',
-            '$window',
-            '$modal',
-            'configService',
-        ];
         return ConfigController;
     }(Demo.BaseController));
+    ConfigController.$inject = [
+        '$scope',
+        '$location',
+        '$window',
+        '$modal',
+        'configService',
+    ];
     Demo.ConfigController = ConfigController;
     angular.module("Demo").controller("configController", ConfigController);
 })(Demo || (Demo = {}));

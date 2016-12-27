@@ -2,8 +2,8 @@
 var Demo;
 (function (Demo) {
     'use strict';
-    var DashboardService = (function () {
-        function DashboardService(http, $q) {
+    var AccountService = (function () {
+        function AccountService(http, $q) {
             var _this = this;
             this.success = function (response) { return response.data; };
             this.fail = function (error) {
@@ -14,13 +14,13 @@ var Demo;
             this._http = http;
             this.$q = $q;
         }
-        DashboardService.prototype.GetDashboardWidgets = function ($scope) {
-            return this._http.get('/widget/dashboardWidgets')
+        AccountService.prototype.saveAccountInfo = function ($scope) {
+            return this._http.post("/config/saveCustomizedWidget/" + JSON.parse(dashboardWidgetMaster.widgetFormat).widgetFormatId, dashboardWidgetMaster)
                 .then(this.success)["catch"](this.fail);
         };
-        return DashboardService;
+        return AccountService;
     }());
-    DashboardService.$inject = ["$http", "$q"];
-    Demo.DashboardService = DashboardService;
-    angular.module("Demo").service("dashboardService", DashboardService);
+    AccountService.$inject = ["$http", "$q"];
+    Demo.AccountService = AccountService;
+    angular.module("Demo").service("accountService", AccountService);
 })(Demo || (Demo = {}));

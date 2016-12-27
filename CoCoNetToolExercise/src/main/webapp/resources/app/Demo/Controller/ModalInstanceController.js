@@ -9,11 +9,12 @@ var Demo;
     var ModalInstanceController = (function (_super) {
         __extends(ModalInstanceController, _super);
         function ModalInstanceController($scope, $modalInstance, $window, configService) {
-            _super.call(this, $scope);
-            this.$scope = $scope;
-            this.$modalInstance = $modalInstance;
-            this.$window = $window;
-            this.configService = configService;
+            var _this = _super.call(this, $scope) || this;
+            _this.$scope = $scope;
+            _this.$modalInstance = $modalInstance;
+            _this.$window = $window;
+            _this.configService = configService;
+            return _this;
         }
         ModalInstanceController.prototype.onConfirm = function (id) {
             var _this = this;
@@ -29,9 +30,9 @@ var Demo;
             this.$modalInstance.dismiss('cancel');
         };
         ;
-        ModalInstanceController.$inject = ['$scope', '$modalInstance', '$window', 'configService'];
         return ModalInstanceController;
     }(Demo.BaseController));
+    ModalInstanceController.$inject = ['$scope', '$modalInstance', '$window', 'configService'];
     Demo.ModalInstanceController = ModalInstanceController;
     angular.module("Demo").controller("modalInstanceController", ModalInstanceController);
 })(Demo || (Demo = {}));

@@ -16,10 +16,17 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class HomeController {
 	
 	private Logger logger = LoggerFactory.getLogger(HomeController.class);
-	
+		
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String dashboardLoader(){
 		logger.info("Main Page Loading");
 		return "index";
 	}
+	
+	@RequestMapping(value = "/myaccount", method = RequestMethod.GET)
+	public String myAccount(){		
+		logger.info("My Account Page Loading");
+		return "myaccount";
+	}
+	
 }

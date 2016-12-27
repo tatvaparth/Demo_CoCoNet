@@ -16,43 +16,36 @@ var Demo;
         }
         ConfigService.prototype.GetWidgetList = function ($scope) {
             return this._http.get('getWidgetList')
-                .then(this.success)
-                .catch(this.fail);
+                .then(this.success)["catch"](this.fail);
         };
         ConfigService.prototype.GetWidgetFormatList = function ($scope) {
             return this._http.get('getWidgetFormatList')
-                .then(this.success)
-                .catch(this.fail);
+                .then(this.success)["catch"](this.fail);
         };
         ConfigService.prototype.getDefaultTemplat = function ($scope, widgetFormatId) {
             return this._http.post("/widgetFormat/getTemplate/", JSON.parse(widgetFormatId).widgetFormatId)
-                .then(this.success)
-                .catch(this.fail);
+                .then(this.success)["catch"](this.fail);
         };
         ConfigService.prototype.saveCustomizedWidget = function ($scope, dashboardWidgetMaster) {
             return this._http.post("/config/saveCustomizedWidget/" + JSON.parse(dashboardWidgetMaster.widgetFormat).widgetFormatId, dashboardWidgetMaster)
-                .then(this.success)
-                .catch(this.fail);
+                .then(this.success)["catch"](this.fail);
         };
         ConfigService.prototype.updateCustomizedWidget = function ($scope, dashboardWidgetMaster) {
             console.log(dashboardWidgetMaster);
             return this._http.post("/config/updateCustomizedWidget/" + dashboardWidgetMaster.widgetFormat.widgetFormatId, dashboardWidgetMaster)
-                .then(this.success)
-                .catch(this.fail);
+                .then(this.success)["catch"](this.fail);
         };
         ConfigService.prototype.getWidget = function ($scope, widgetId) {
             return this._http.post('/config/getWidget', widgetId)
-                .then(this.success)
-                .catch(this.fail);
+                .then(this.success)["catch"](this.fail);
         };
         ConfigService.prototype.deleteWidget = function ($scope, widgetId) {
             return this._http.post('/config/deleteWidget', widgetId)
-                .then(this.success)
-                .catch(this.fail);
+                .then(this.success)["catch"](this.fail);
         };
-        ConfigService.$inject = ["$http", "$q"];
         return ConfigService;
     }());
+    ConfigService.$inject = ["$http", "$q"];
     Demo.ConfigService = ConfigService;
     angular.module("Demo").service("configService", ConfigService);
 })(Demo || (Demo = {}));
